@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Politique de confidentialité · Kengela</title>
+<meta name="description" content="Comment Kengela, logiciel de gestion des sociétés de gardiennage, traite et protège les données personnelles.">
+<meta name="theme-color" content="#f6f4ef">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317150f'/%3E%3Cpath d='M18 12h28v18c0 11-6.5 18-14 21-7.5-3-14-10-14-21z' fill='none' stroke='%23f6f4ef' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M27 21v18' stroke='%23f6f4ef' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M37.5 21 28.5 30 37.5 39' fill='none' stroke='%23b8321a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --papier: #f6f4ef; --surface: #ffffff; --encre: #17150f; --encre-2: #4a463d; --encre-3: #8a8578;
+    --trait: #e6e2d8; --accent: #b8321a; --accent-fond: #f6e4df;
+    --serif: 'Sitka Display', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    --sans: 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --papier: #12110d; --surface: #1d1b16; --encre: #efeadf; --encre-2: #c9c3b6; --encre-3: #8f897c; --trait: #34312a; --accent: #e0694f; --accent-fond: #2e1a14; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--papier); color: var(--encre); font: 16px/1.65 var(--sans); }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  .page { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+  .marque { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: .01em; margin-bottom: 48px; }
+  .sur-titre { font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--encre-3); margin: 0 0 8px; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 6vw, 44px); line-height: 1.12; margin: 0 0 14px; }
+  .chapeau { font-size: 18px; color: var(--encre-2); margin: 0 0 8px; }
+  .date { font-size: 14px; color: var(--encre-3); margin: 0 0 40px; }
+  .bref { background: var(--surface); border: 1px solid var(--trait); border-radius: 14px; padding: 22px 24px; margin-bottom: 48px; }
+  .bref h2 { margin-top: 0; font-size: 20px; }
+  .bref ul { margin: 0; padding-left: 20px; }
+  .bref li + li { margin-top: 6px; }
+  nav.sommaire { font-size: 15px; margin-bottom: 48px; }
+  nav.sommaire ol { columns: 2; column-gap: 32px; padding-left: 20px; margin: 8px 0 0; }
+  @media (max-width: 560px) { nav.sommaire ol { columns: 1; } }
+  section { padding-top: 8px; margin-bottom: 36px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; line-height: 1.25; margin: 0 0 12px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  p, ul { margin: 0 0 12px; }
+  li + li { margin-top: 4px; }
+  .tableau { overflow-x: auto; margin: 0 0 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--trait); }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--encre-3); font-weight: 600; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  @media (max-width: 560px) {
+    table, tbody, tr, td { display: block; }
+    thead { display: none; }
+    tr { padding: 10px 0; border-bottom: 1px solid var(--trait); }
+    td { border: 0; padding: 2px 0; white-space: normal !important; }
+  }
+  .note { border-left: 3px solid var(--accent); background: var(--accent-fond); padding: 12px 16px; border-radius: 0 10px 10px 0; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--trait); font-size: 14px; color: var(--encre-3); }
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="marque">
+    <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+      <rect width="64" height="64" rx="14" fill="#17150f"/>
+      <path d="M18 12h28v18c0 11-6.5 18-14 21-7.5-3-14-10-14-21z" fill="none" stroke="#f6f4ef" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M27 21v18" stroke="#f6f4ef" stroke-width="3" stroke-linecap="round"/>
+      <path d="M37.5 21 28.5 30 37.5 39" fill="none" stroke="#b8321a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Kengela
+  </div>
+
+  <p class="sur-titre">Données personnelles</p>
+  <h1>Politique de confidentialité</h1>
+  <p class="chapeau">Kengela est un logiciel de gestion pour les sociétés de gardiennage : planning, pointage, rondes, contrôles,
+    facturation et ressources humaines. Cette page explique quelles données il traite, pourquoi, avec qui, combien de temps, et
+    quels sont vos droits.</p>
+  <p class="date">Mise à jour le 17 novembre 2026</p>
+
+  <div class="bref">
+    <h2>En bref</h2>
+    <ul>
+      <li>Les données d'une société de gardiennage appartiennent à cette société. Kengela les héberge et les traite pour elle, sur ses instructions.</li>
+      <li>Rien n'est vendu, loué ni utilisé pour de la publicité.</li>
+      <li>La position d'un téléphone n'est relevée qu'au moment d'une action (pointage, passage de contrôle, alerte SOS), jamais en continu.</li>
+      <li>Les photos d'incident et de registre sont effacées au bout de 60 jours.</li>
+      <li>Chaque société ne voit que ses propres données ; chaque utilisateur ne voit que ce que son rôle autorise.</li>
+      <li>Pour toute question ou demande : <span data-contact="email"></span>.</li>
+    </ul>
+  </div>
+
+  <nav class="sommaire" aria-label="Sommaire">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#responsable">Qui est responsable</a></li>
+      <li><a href="#donnees">Les données traitées</a></li>
+      <li><a href="#finalites">Pourquoi</a></li>
+      <li><a href="#telephones">Applications mobiles et téléphones de poste</a></li>
+      <li><a href="#partage">Avec qui</a></li>
+      <li><a href="#duree">Combien de temps</a></li>
+      <li><a href="#securite">Sécurité</a></li>
+      <li><a href="#droits">Vos droits</a></li>
+      <li><a href="#cookies">Cookies et site web</a></li>
+      <li><a href="#contact">Modifications et contact</a></li>
+    </ol>
+  </nav>
+
+  <section id="responsable">
+    <h2>1. Qui est responsable</h2>
+    <p><strong>Kengela</strong>, éditeur du logiciel, établi à Brazzaville (République du Congo), est responsable des données de
+      ses propres clients et prospects : comptes d'administrateur, abonnements et paiements, demandes de démonstration, échanges
+      avec le service client.</p>
+    <p><strong>Chaque société de gardiennage</strong> qui utilise Kengela est responsable des données qu'elle y enregistre sur ses
+      agents, son personnel, ses candidats, ses clients et ses sites. Pour ces données, Kengela agit comme sous-traitant : il les
+      héberge et les traite uniquement pour fournir le service à cette société, et ne les utilise pour rien d'autre.</p>
+    <p>Ces traitements sont réalisés dans le respect de la loi n° 29-2019 du 10 octobre 2019 portant protection des données à
+      caractère personnel en République du Congo.</p>
+  </section>
+
+  <section id="donnees">
+    <h2>2. Les données traitées</h2>
+    <div class="tableau">
+      <table>
+        <thead><tr><th>Qui</th><th>Données</th></tr></thead>
+        <tbody>
+          <tr><td>Agents et personnel</td><td>Identité (nom, prénom, sexe, date et lieu de naissance, photo), numéro de pièce d'identité,
+            coordonnées (téléphone, adresse, quartier), personne à prévenir, matricule, fonction, tailles d'équipement, contrats de
+            travail, salaires, avances, bulletins de paie, congés, formations, cartes professionnelles, discipline.</td></tr>
+          <tr><td>Activité sur le terrain</td><td>Planning et vacations, pointages d'arrivée et de départ (heure et, selon l'appareil,
+            position), rondes (heure de passage à chaque point), main courante, incidents et leurs photos, contrôles sur site et
+            photos du registre, alertes SOS.</td></tr>
+          <tr><td>Candidats</td><td>Informations du dossier de recrutement saisies par la société.</td></tr>
+          <tr><td>Clients des sociétés</td><td>Nom, contact, téléphone, adresse e-mail, sites gardés, contrats, factures et paiements ;
+            visites de l'espace client (date et nombre).</td></tr>
+          <tr><td>Utilisateurs du logiciel</td><td>Nom, adresse e-mail, rôle, connexions, réglages de double authentification,
+            numéros choisis pour les alertes WhatsApp, journal des actions effectuées.</td></tr>
+          <tr><td>Téléphones de poste</td><td>Site affecté, niveau de batterie, état de charge, version de l'application, heure du
+            dernier signal, identifiant de notification.</td></tr>
+          <tr><td>Prospects</td><td>Demande de démonstration : nom, société, téléphone, adresse e-mail, logo envoyé ; empreinte
+            chiffrée de l'adresse IP pour limiter les abus.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Kengela ne demande pas de données de santé. Un justificatif de congé maladie peut être joint par la société si elle le
+      choisit ; il n'est visible que par son bureau.</p>
+  </section>
+
+  <section id="finalites">
+    <h2>3. Pourquoi</h2>
+    <ul>
+      <li><strong>Faire fonctionner le service</strong> : organiser le planning, vérifier la présence aux postes, suivre les rondes
+        et les incidents, établir les factures, les contrats et la paie.</li>
+      <li><strong>Prévenir</strong> les responsables d'un événement sur le terrain (SOS, ronde manquée, poste découvert) par
+        notification ou par WhatsApp, selon les réglages de la société.</li>
+      <li><strong>Prouver le travail fait</strong> auprès du client de la société (rapports, espace client) et vérifier
+        l'authenticité d'une carte professionnelle.</li>
+      <li><strong>Gérer l'abonnement</strong> de la société et ses paiements.</li>
+      <li><strong>Sécuriser</strong> le service : contrôle d'accès, journal des actions, détection d'abus.</li>
+    </ul>
+    <p>Ces traitements reposent sur le contrat entre Kengela et la société cliente, sur les obligations légales de cette société
+      envers ses employés (paie, contrats), et sur son intérêt à contrôler l'exécution des prestations de gardiennage.</p>
+  </section>
+
+  <section id="telephones">
+    <h2>4. Applications mobiles et téléphones de poste</h2>
+    <h3>Position</h3>
+    <p>La position du téléphone est relevée <strong>uniquement au moment d'une action</strong> : pointage, passage d'un contrôleur
+      sur un site, déclenchement d'une alerte SOS. Elle sert à vérifier que l'action a bien eu lieu sur le site. Il n'y a aucun
+      suivi en continu, ni en dehors du service. L'application signale aussi une position simulée.</p>
+    <h3>Appareil photo et NFC</h3>
+    <p>L'appareil photo n'est utilisé que lorsque l'utilisateur prend une photo (incident, registre). La lecture NFC sert à
+      enregistrer le passage aux points de ronde et le pointage par carte ; seul l'identifiant de la puce est lu.</p>
+    <h3>Notifications</h3>
+    <p>Pour recevoir les alertes, le téléphone transmet un identifiant de notification. Il peut être retiré à tout moment en se
+      déconnectant ou en désactivant les notifications.</p>
+  </section>
+
+  <section id="partage">
+    <h2>5. Avec qui</h2>
+    <p>Les données ne sont jamais vendues. Elles ne sont transmises qu'aux prestataires techniques nécessaires au service, chacun
+      pour sa seule tâche :</p>
+    <div class="tableau">
+      <table>
+        <thead><tr><th>Prestataire</th><th>Rôle</th></tr></thead>
+        <tbody>
+          <tr><td>Supabase</td><td>Hébergement de la base de données, des fichiers et des fonctions du serveur, dans l'Union européenne
+            (Paris, France).</td></tr>
+          <tr><td>Expo, Google, Apple</td><td>Acheminement des notifications sur les téléphones (titre et texte de l'alerte).</td></tr>
+          <tr><td>Meta (WhatsApp)</td><td>Envoi des alertes WhatsApp aux numéros choisis par la société (nom de la société, titre et
+            texte de l'alerte).</td></tr>
+          <tr><td>FeexPay, MTN Mobile Money</td><td>Paiement de l'abonnement (numéro de téléphone payeur, montant, référence).</td></tr>
+          <tr><td>Service d'envoi d'e-mails</td><td>Messages de compte : invitation, nouveau mot de passe, confirmation d'adresse.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Certains de ces prestataires sont situés hors de la République du Congo. Kengela ne retient que des prestataires qui
+      appliquent des mesures de sécurité reconnues. Les données peuvent aussi être communiquées à une autorité qui les
+      demanderait dans le cadre de la loi.</p>
+    <p>Au sein d'une société, le client (donneur d'ordre) ne voit que ce que la société partage dans son espace client : rondes,
+      contrôles, incidents et factures de ses propres sites, sans données personnelles des agents au-delà du nom.</p>
+  </section>
+
+  <section id="duree">
+    <h2>6. Combien de temps</h2>
+    <ul>
+      <li><strong>Photos d'incident et de registre</strong> : effacées automatiquement 60 jours après leur envoi (le rapport
+        écrit est conservé).</li>
+      <li><strong>Alertes du terrain</strong> : effacées au bout de 30 jours.</li>
+      <li><strong>Données d'une société</strong> : conservées tant que la société utilise Kengela. À la fin de l'abonnement, la
+        société peut demander leur suppression définitive ; elles sont alors effacées, sauf les pièces que la loi oblige à garder
+        (factures, documents de paie), conservées le temps imposé.</li>
+      <li><strong>Agents sortis</strong> : la société décide de la durée de conservation, dans le respect de ses obligations
+        d'employeur.</li>
+      <li><strong>Demandes de démonstration non suivies</strong> : supprimées sur simple demande.</li>
+    </ul>
+  </section>
+
+  <section id="securite">
+    <h2>7. Sécurité</h2>
+    <ul>
+      <li>Toutes les connexions sont chiffrées (HTTPS).</li>
+      <li>Chaque société est isolée : la base de données refuse à un utilisateur l'accès aux données d'une autre société.</li>
+      <li>Les accès dépendent du rôle (administrateur, gestionnaire, contrôleur, téléphone de poste) ; les salaires et les montants
+        sont réservés à l'administrateur.</li>
+      <li>Les mots de passe ne sont jamais connus de Kengela ; seul l'administrateur d'une société crée les comptes de son personnel.</li>
+      <li>Les comptes de l'éditeur sont protégés par une double authentification.</li>
+      <li>Les codes de l'espace client ne sont pas conservés en clair, et plusieurs codes faux bloquent l'accès.</li>
+      <li>Les actions importantes sont inscrites dans un journal consultable par l'administrateur.</li>
+    </ul>
+  </section>
+
+  <section id="droits">
+    <h2>8. Vos droits</h2>
+    <p>Toute personne dont les données sont traitées peut demander à <strong>y accéder</strong>, à les <strong>faire corriger</strong>,
+      à les <strong>faire supprimer</strong> lorsqu'elles ne sont plus nécessaires, ou à <strong>s'opposer</strong> à un traitement
+      pour un motif légitime.</p>
+    <p class="note">Vous êtes agent ou client d'une société de gardiennage ? Adressez d'abord votre demande à cette société : c'est elle
+      qui gère vos données. Si elle ne répond pas, écrivez à Kengela, qui l'aidera à traiter votre demande.</p>
+    <p>Les demandes adressées à Kengela reçoivent une réponse dans un délai d'un mois au plus. Une pièce justifiant votre identité
+      peut être demandée. Vous pouvez aussi saisir l'autorité de protection des données à caractère personnel compétente en
+      République du Congo.</p>
+  </section>
+
+  <section id="cookies">
+    <h2>9. Cookies et site web</h2>
+    <p>Le site de présentation et les pages publiques de Kengela n'utilisent ni cookie publicitaire ni outil de suivi. Le logiciel
+      garde dans l'ordinateur ou le téléphone de l'utilisateur ce qui est nécessaire à sa session (connexion, préférences
+      d'affichage). Le code de l'espace client n'est jamais enregistré dans le navigateur.</p>
+  </section>
+
+  <section id="contact">
+    <h2>10. Modifications et contact</h2>
+    <p>Cette politique peut évoluer avec le logiciel. La date de mise à jour figure en haut de la page ; en cas de changement
+      important, les administrateurs des sociétés en sont informés.</p>
+    <p>Pour toute question ou pour exercer vos droits :</p>
+    <ul>
+      <li>E-mail : <span data-contact="email"></span></li>
+      <li>WhatsApp : <span data-contact="whatsapp"></span></li>
+      <li>Adresse : Brazzaville, République du Congo</li>
+    </ul>
+  </section>
+
+  <footer>© <span data-annee>2026</span> Kengela · Logiciel de gestion pour sociétés de gardiennage · Brazzaville</footer>
+</main>
+<script>
+  // Mêmes coordonnées que sur la page de présentation.
+  const CONTACT = { whatsapp: '242044990298', email: 'lkenge956@gmail.com' };
+  document.querySelector('[data-annee]').textContent = new Date().getFullYear();
+  for (const el of document.querySelectorAll('[data-contact]')) {
+    const cle = el.dataset.contact;
+    const v = CONTACT[cle];
+    const a = document.createElement('a');
+    a.href = cle === 'whatsapp' ? `https://wa.me/${v}` : `mailto:${v}`;
+    a.textContent = cle === 'whatsapp' ? '+' + v.replace(/^(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5') : v;
+    el.appendChild(a);
+  }
+</script>
+</body>
+</html>
