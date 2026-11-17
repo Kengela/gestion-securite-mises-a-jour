@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Espace client</title>
+  <!-- Espace client d'une société de gardiennage (logiciel Kengela). Le lien secret est après le « # » :
+       il n'est jamais envoyé au serveur qui héberge cette page, seulement à la fonction espace-client,
+       avec le code à 6 chiffres. Rien n'est enregistré dans le navigateur. -->
+  <style>
+    :root {
+      --papier: #f6f4ef; --surface: #fff; --encre: #17150f; --encre-2: #4a463d; --encre-3: #8a8578; --trait: #e6e2d8;
+      --accent: #b8321a; --ok: #2f6b3a; --ok-fond: #e3efe2; --alerte: #8a5a00; --alerte-fond: #f7ecd4; --danger: #a3221a; --danger-fond: #f6dfdc;
+      --serif: 'Sitka Display', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      --sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--papier); color: var(--encre); font: 15px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+    main { max-width: 920px; margin: 0 auto; padding: 24px 16px 48px; }
+    .entete { display: flex; align-items: center; gap: 14px; }
+    .entete img { max-height: 54px; max-width: 120px; object-fit: contain; }
+    .societe { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.2; }
+    .sous { color: var(--encre-3); font-size: 13px; }
+    h1 { font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacing: -.01em; margin: 26px 0 2px; }
+    h2 { font-family: var(--serif); font-size: 21px; font-weight: 600; margin: 34px 0 10px; }
+    .barre { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    select, input, button { font: inherit; }
+    select { padding: 7px 10px; border: 1px solid var(--trait); border-radius: 8px; background: var(--surface); color: var(--encre); }
+    .btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--trait); background: var(--surface); color: var(--encre); cursor: pointer; }
+    .btn-principal { background: var(--encre); color: #fff; border-color: var(--encre); }
+    .btn:disabled { opacity: .6; cursor: default; }
+    .carte { background: var(--surface); border: 1px solid var(--trait); border-radius: 14px; box-shadow: 0 1px 2px rgba(23,21,15,.05); }
+    .connexion { max-width: 400px; margin: 40px auto 0; padding: 26px 24px; }
+    .connexion h1 { margin-top: 0; font-size: 24px; }
+    .code { width: 100%; margin: 14px 0 10px; padding: 12px; font-size: 26px; letter-spacing: .5em; text-align: center; border: 1px solid var(--trait); border-radius: 10px; font-variant-numeric: tabular-nums; }
+    .erreur { color: var(--danger); background: var(--danger-fond); padding: 10px 12px; border-radius: 8px; margin: 10px 0; font-size: 14px; }
+    .tuiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 20px; }
+    .tuile { padding: 16px 18px; }
+    .tuile .titre { color: var(--encre-3); font-size: 13px; }
+    .tuile .valeur { font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.15; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .tuile .note { color: var(--encre-2); font-size: 13px; margin-top: 2px; }
+    .valeur.danger { color: var(--danger); }
+    .tableau { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { text-align: left; font-weight: 600; color: var(--encre-3); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; padding: 10px 12px; border-bottom: 1px solid var(--trait); white-space: nowrap; }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--trait); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    .nombre { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; background: #efece4; color: var(--encre-2); white-space: nowrap; }
+    .badge.ok { background: var(--ok-fond); color: var(--ok); }
+    .badge.alerte { background: var(--alerte-fond); color: var(--alerte); }
+    .badge.danger { background: var(--danger-fond); color: var(--danger); }
+    .liste { display: grid; gap: 10px; }
+    .element { padding: 14px 16px; }
+    .element .haut { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+    .element .quand { color: var(--encre-3); font-size: 13px; }
+    .element p { margin: 6px 0 0; color: var(--encre-2); white-space: pre-line; }
+    .element .etiquette { color: var(--encre-3); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; margin-top: 10px; }
+    .criteres { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .vide { color: var(--encre-3); padding: 18px; text-align: center; }
+    details summary { cursor: pointer; color: var(--encre-2); margin-top: 12px; }
+    .pied { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--trait); color: var(--encre-3); font-size: 13px; }
+    .pied a { color: var(--encre); font-weight: 600; }
+    @media (max-width: 640px) {
+      h1 { font-size: 26px; }
+      .tuile .valeur { font-size: 24px; }
+      .empilable thead { display: none; }
+      .empilable tr { display: block; padding: 10px 14px; border-bottom: 1px solid var(--trait); }
+      .empilable tr:last-child { border-bottom: none; }
+      .empilable td { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; border: none; text-align: right; }
+      .empilable td::before { content: attr(data-l); color: var(--encre-3); text-align: left; }
+      .empilable td.nombre { white-space: normal; }
+    }
+    .attente { margin-top: 60px; text-align: center; color: var(--encre-3); }
+    @media print {
+      body { background: #fff; }
+      .barre, .connexion, details summary { display: none; }
+      details { display: block; }
+      .carte { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main id="page"><p class="attente">Chargement…</p></main>
+  <script>
+    (function () {
+      var FONCTION = 'https://mjvwvmxsvlbyywxkqica.supabase.co/functions/v1/espace-client';
+      var CLE = 'sb_publishable_ZN0H8eI5j3s7VIKPyIxi2Q_h7z4y3GS';
+      var page = document.getElementById('page');
+      var jeton = decodeURIComponent((location.hash || '').slice(1));
+      var code = null; // gardé en mémoire seulement, le temps de la visite
+      var TZ = 'Africa/Brazzaville';
+
+      function t(v) { var d = document.createElement('div'); d.textContent = v == null ? '' : String(v); return d.innerHTML; }
+      function fcfa(n) { return new Intl.NumberFormat('fr-FR').format(Math.round(n || 0)).replace(/ | /g, ' ') + ' FCFA'; }
+      function jour(v) { return v ? new Date(v.length === 10 ? v + 'T12:00:00Z' : v).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: TZ }) : '—'; }
+      function jourHeure(v) { return new Date(v).toLocaleString('fr-FR', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: TZ }); }
+      function nomMois(m) { var p = m.split('-'); var s = new Date(Date.UTC(+p[0], +p[1] - 1, 15)).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric', timeZone: 'UTC' }); return s.charAt(0).toUpperCase() + s.slice(1); }
+
+      function lienInvalide(message) {
+        page.innerHTML = '<div class="carte connexion"><h1>Espace client</h1><div class="erreur">' + t(message || 'Ce lien est incomplet ou n\'est plus valable.') + '</div>' +
+          '<p class="sous">Demandez un nouveau lien à votre société de gardiennage.</p></div>';
+      }
+
+      function demanderCode(message) {
+        page.innerHTML =
+          '<form class="carte connexion" id="formulaire">' +
+            '<h1>Espace client</h1>' +
+            '<p class="sous">Saisissez le code à 6 chiffres que votre société de gardiennage vous a communiqué avec ce lien.</p>' +
+            (message ? '<div class="erreur">' + t(message) + '</div>' : '') +
+            '<input class="code" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required aria-label="Code à 6 chiffres" />' +
+            '<button class="btn btn-principal" style="width:100%" id="valider">Ouvrir mon espace</button>' +
+          '</form>';
+        var champ = document.getElementById('code');
+        champ.focus();
+        document.getElementById('formulaire').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var saisi = champ.value.replace(/\D/g, '');
+          if (saisi.length !== 6) return;
+          document.getElementById('valider').disabled = true;
+          code = saisi;
+          charger(null);
+        });
+      }
+
+      function charger(mois) {
+        fetch(FONCTION, {
+          method: 'POST',
+          headers: { apikey: CLE, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'ouvrir', jeton: jeton, code: code, mois: mois })
+        })
+          .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+          .then(function (x) {
+            if (x.ok) return afficher(x.d);
+            var e = x.d || {};
+            if (e.code_erreur === 'lien' || e.code_erreur === 'indisponible') return lienInvalide(e.erreur);
+            code = null;
+            demanderCode(e.erreur || 'Ouverture impossible.');
+          })
+          .catch(function () {
+            if (!code) return;
+            page.insertAdjacentHTML('afterbegin', '<div class="erreur">Connexion impossible (pas d\'internet ?). Réessayez dans un instant.</div>');
+          });
+      }
+
+      function badgeRonde(s) {
+        return s === 'manquee' ? '<span class="badge danger">Manquée</span>' : s === 'partielle' ? '<span class="badge alerte">Incomplète</span>' : '<span class="badge ok">Faite</span>';
+      }
+      function critere(nom, v) {
+        if (v == null) return '';
+        return '<span class="badge ' + (v ? 'ok' : 'danger') + '">' + t(nom) + (v ? ' ✓' : ' ✗') + '</span>';
+      }
+
+      function afficher(d) {
+        document.title = 'Espace client · ' + d.client.nom;
+        var r = d.rondes;
+        var taux = r.total ? Math.round((r.faites / r.total) * 100) : null;
+        var notes = d.controles.map(function (c) { return c.note; }).filter(function (n) { return typeof n === 'number'; });
+        var moyenne = notes.length ? (notes.reduce(function (a, b) { return a + b; }, 0) / notes.length).toFixed(1).replace('.', ',') : null;
+        var ouverts = d.incidents.filter(function (i) { return i.statut !== 'clos'; }).length;
+        var enRetard = d.factures.filter(function (f) { return f.reste > 0 && f.jours_retard > 0; }).length;
+
+        var html =
+          '<div class="entete">' + (d.societe.logo ? '<img src="' + t(d.societe.logo) + '" alt="" />' : '') +
+            '<div><div class="societe">' + t(d.societe.nom) + '</div><div class="sous">Espace client</div></div></div>' +
+          '<h1>' + t(d.client.nom) + '</h1>' +
+          '<div class="sous">' + (d.sites.length ? t(d.sites.map(function (s) { return s.nom; }).join(' · ')) : 'Aucun site actif') + '</div>' +
+          '<div class="barre"><select id="mois" aria-label="Mois">' +
+            d.mois_disponibles.map(function (m) { return '<option value="' + m + '"' + (m === d.mois ? ' selected' : '') + '>' + t(nomMois(m)) + '</option>'; }).join('') +
+          '</select><button class="btn" id="imprimer">Imprimer</button></div>' +
+
+          '<div class="tuiles">' +
+            '<div class="carte tuile"><div class="titre">Rondes effectuées</div><div class="valeur">' + (taux == null ? '—' : taux + ' %') + '</div>' +
+              '<div class="note">' + (r.total ? r.faites + ' sur ' + r.total + ' rondes' : 'Aucune ronde ce mois') + '</div></div>' +
+            '<div class="carte tuile"><div class="titre">Contrôles sur site</div><div class="valeur">' + d.controles.length + '</div>' +
+              '<div class="note">' + (moyenne ? 'Note moyenne ' + moyenne + ' / 5' : 'Passages de nos contrôleurs') + '</div></div>' +
+            '<div class="carte tuile"><div class="titre">Incidents</div><div class="valeur' + (ouverts ? ' danger' : '') + '">' + d.incidents.length + '</div>' +
+              '<div class="note">' + (d.incidents.length ? (ouverts ? ouverts + ' en cours de traitement' : 'Tous traités') : 'Aucun incident ce mois') + '</div></div>' +
+            '<div class="carte tuile"><div class="titre">Reste à payer</div><div class="valeur' + (enRetard ? ' danger' : '') + '">' + fcfa(d.du) + '</div>' +
+              '<div class="note">' + (d.du ? (enRetard ? enRetard + ' facture' + (enRetard > 1 ? 's' : '') + ' en retard' : 'Dans les délais') : 'Aucune somme due') + '</div></div>' +
+          '</div>';
+
+        // Rondes
+        html += '<h2>Rondes · ' + t(nomMois(d.mois)) + '</h2>';
+        if (!r.par_site.length) html += '<div class="carte vide">Aucune ronde programmée sur vos sites ce mois-ci.</div>';
+        else {
+          html += '<div class="carte tableau"><table class="empilable"><thead><tr><th>Site</th><th class="nombre">Prévues</th><th class="nombre">Faites</th><th class="nombre">Incomplètes</th><th class="nombre">Manquées</th><th class="nombre">Taux</th></tr></thead><tbody>' +
+            r.par_site.map(function (s) {
+              return '<tr><td data-l="Site"><strong>' + t(s.site) + '</strong></td><td data-l="Prévues" class="nombre">' + s.total + '</td><td data-l="Faites" class="nombre">' + s.faites + '</td><td data-l="Incomplètes" class="nombre">' + s.partielles + '</td><td data-l="Manquées" class="nombre">' + s.manquees + '</td><td data-l="Taux" class="nombre"><strong>' + (s.taux == null ? '—' : s.taux + ' %') + '</strong></td></tr>';
+            }).join('') + '</tbody></table></div>';
+          if (r.anomalies.length) {
+            html += '<details><summary>Voir les ' + r.anomalies.length + ' rondes manquées ou incomplètes</summary><div class="carte tableau" style="margin-top:10px"><table class="empilable"><thead><tr><th>Prévue le</th><th>Site</th><th>Points</th><th>État</th></tr></thead><tbody>' +
+              r.anomalies.map(function (a) { return '<tr><td data-l="Prévue le">' + t(jourHeure(a.prevue_a)) + '</td><td data-l="Site">' + t(a.site) + '</td><td data-l="Points" class="nombre">' + t(a.points) + '</td><td data-l="État">' + badgeRonde(a.statut) + '</td></tr>'; }).join('') +
+              '</tbody></table></div></details>';
+          }
+        }
+
+        // Contrôles
+        html += '<h2>Contrôles sur site</h2>';
+        if (!d.controles.length) html += '<div class="carte vide">Aucun contrôle enregistré ce mois-ci.</div>';
+        else html += '<div class="liste">' + d.controles.map(function (c) {
+          return '<div class="carte element"><div class="haut"><strong>' + t(c.site) + '</strong><span class="quand">' + t(jourHeure(c.effectue_le)) + '</span></div>' +
+            '<div class="criteres">' +
+              (c.agents ? '<span class="badge">Agents présents ' + t(c.agents) + '</span>' : '') +
+              critere('Tenue', c.tenue) + critere('Main courante', c.main_courante) + critere('Matériel', c.materiel) + critere('Registre visé', c.registre) +
+              (typeof c.note === 'number' ? '<span class="badge">Note ' + c.note + ' / 5</span>' : '') +
+            '</div>' + (c.observations ? '<p>' + t(c.observations) + '</p>' : '') + '</div>';
+        }).join('') + '</div>';
+
+        // Incidents
+        html += '<h2>Incidents</h2>';
+        if (!d.incidents.length) html += '<div class="carte vide">Aucun incident sur vos sites ce mois-ci.</div>';
+        else html += '<div class="liste">' + d.incidents.map(function (i) {
+          var ton = i.gravite === 'critique' || i.gravite === 'elevee' ? 'danger' : i.gravite === 'moyenne' ? 'alerte' : '';
+          return '<div class="carte element"><div class="haut"><strong>' + t(i.titre || i.type) + '</strong><span class="quand">' + t(jourHeure(i.survenu_le)) + ' · ' + t(i.site) + '</span></div>' +
+            '<div class="criteres"><span class="badge">' + t(i.type) + '</span><span class="badge ' + ton + '">Gravité ' + t(i.gravite_libelle.toLowerCase()) + '</span>' +
+              '<span class="badge ' + (i.statut === 'clos' ? 'ok' : 'alerte') + '">' + t(i.statut_libelle) + '</span>' + (i.police ? '<span class="badge">Police informée</span>' : '') + '</div>' +
+            (i.description ? '<p>' + t(i.description) + '</p>' : '') +
+            (i.mesures ? '<div class="etiquette">Mesures prises</div><p>' + t(i.mesures) + '</p>' : '') +
+            (i.cloture ? '<div class="etiquette">Clôture</div><p>' + t(i.cloture) + '</p>' : '') + '</div>';
+        }).join('') + '</div>';
+
+        // Factures
+        html += '<h2>Factures</h2>';
+        if (!d.factures.length) html += '<div class="carte vide">Aucune facture pour le moment.</div>';
+        else html += '<div class="carte tableau"><table class="empilable"><thead><tr><th>Facture</th><th>Émise le</th><th>Échéance</th><th class="nombre">Montant TTC</th><th class="nombre">Reste à payer</th><th>État</th></tr></thead><tbody>' +
+          d.factures.map(function (f) {
+            var ton = f.paye_entierement ? 'ok' : f.jours_retard > 0 ? 'danger' : 'alerte';
+            var etat = f.paye_entierement ? 'Payée' : f.jours_retard > 0 ? 'En retard de ' + f.jours_retard + ' j' : f.statut;
+            return '<tr><td data-l="Facture"><strong>' + t(f.numero) + '</strong></td><td data-l="Émise le">' + t(jour(f.date_emission)) + '</td><td data-l="Échéance">' + t(jour(f.date_echeance)) + '</td>' +
+              '<td data-l="Montant TTC" class="nombre">' + fcfa(f.total_ttc) + '</td><td data-l="Reste à payer" class="nombre">' + (f.reste ? '<strong>' + fcfa(f.reste) + '</strong>' : '—') + '</td><td data-l="État"><span class="badge ' + ton + '">' + t(etat) + '</span></td></tr>';
+          }).join('') + '</tbody></table></div>';
+
+        html += '<div class="pied">Informations tenues à jour par ' + t(d.societe.nom) + '. Consulté le ' + t(jourHeure(d.genere_le)) + '.' +
+          (d.societe.telephone ? ' Une question ? <a href="tel:' + t(String(d.societe.telephone).replace(/\s/g, '')) + '">' + t(d.societe.telephone) + '</a>' : '') +
+          (d.societe.email ? ' · <a href="mailto:' + t(d.societe.email) + '">' + t(d.societe.email) + '</a>' : '') + '</div>';
+
+        page.innerHTML = html;
+        document.getElementById('mois').addEventListener('change', function (e) {
+          page.insertAdjacentHTML('beforeend', '<p class="attente">Chargement…</p>');
+          charger(e.target.value);
+        });
+        document.getElementById('imprimer').addEventListener('click', function () {
+          document.querySelectorAll('details').forEach(function (x) { x.open = true; });
+          window.print();
+        });
+      }
+
+      if (!/^[A-Za-z0-9_-]{24}$/.test(jeton)) return lienInvalide();
+      demanderCode(null);
+    })();
+  </script>
+</body>
+</html>
