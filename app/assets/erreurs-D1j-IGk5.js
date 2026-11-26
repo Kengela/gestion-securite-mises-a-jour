@@ -1,1 +1,0 @@
-import{d as e}from"./ui-8CWLle-N.js";async function t(t){return(await t.context?.json?.().catch(()=>null))?.erreur??e(t)}export{t};
