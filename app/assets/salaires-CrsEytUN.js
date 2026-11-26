@@ -1,0 +1,1 @@
+import{h as e,n as t}from"./donnees-DEmorWtJ.js";function n(){let{data:n}=t(()=>e.from(`parametres`).select(`salaires_fonction`).single(),[]);return n?.salaires_fonction??{}}function r(e,t,n){if(e!=null&&Number(e)>0)return{montant:Number(e),source:`contrat`};let r=t?Number(n[t]):NaN;return Number.isFinite(r)&&r>0?{montant:r,source:`fonction`}:null}export{n,r as t};

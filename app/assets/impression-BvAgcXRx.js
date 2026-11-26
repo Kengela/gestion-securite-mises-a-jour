@@ -1,0 +1,1 @@
+async function e(e){window.gestionSecurite?await window.gestionSecurite.apercuImpression(e):window.print()}export{e as t};

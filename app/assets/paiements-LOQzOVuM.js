@@ -1,0 +1,1 @@
+var e={mtn_money:`MTN Mobile Money`,airtel_money:`Airtel Money`,virement:`Virement bancaire`,especes:`Espèces`,autre:`Autre`},t={en_attente:`En attente de validation`,valide:`Validé`,refuse:`Refusé`},n={1:`1 mois`,3:`3 mois`,6:`6 mois`,12:`12 mois (1 mois offert)`};function r(e,t){return e==null?null:e*(t>=12?t-Math.floor(t/12):t)}export{r as i,e as n,t as r,n as t};
